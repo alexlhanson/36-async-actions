@@ -17,7 +17,7 @@ export default class ListItem extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="list-item">
         <button id="delete-button" onClick={this.handleClick}>x</button>
         <h4>{this.props.list.title}</h4>
         <ListForm buttonText="Update List" onComplete={this.props.update} list={this.props.list}/>        
