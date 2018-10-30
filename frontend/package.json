@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "full-stack todo node/react with thunk",
   "main": "webpack.common.js",
+  "jest": {
+    "globals": {
+      "__DEBUG__": true,
+      "__API_URL__": "http://localhost:3000"
+    }
+  },
   "scripts": {
     "test": "jest --coverage",
     "watch": "webpack-dev-server --config webpack.dev.js",
@@ -45,7 +51,9 @@
   "dependencies": {
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-inline-elements": "^6.22.0",
+    "clean-webpack-plugin": "^0.1.19",
     "dotenv": "^6.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^23.6.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

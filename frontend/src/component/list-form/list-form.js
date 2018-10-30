@@ -3,11 +3,8 @@ import React from 'react';
 export default class ListForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: props.list ? props.list.title : '',
-      id: props.list ? props.list.id: '',
-    }
-
+    this.state = props.list ? props.list : '',  
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -20,7 +17,8 @@ export default class ListForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props);
+    console.log('__list__',this.props.list);
+    console.log()
     this.props.onComplete(Object.assign({}, this.state));
   }
 

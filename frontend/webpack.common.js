@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,7 +21,7 @@ webpackConfig.plugins = [
   }),
 
   new DefinePlugin({
-    API_URL: JSON.stringify(process.env.API_URL),
+    __API_URL__: JSON.stringify(process.env.API_URL),
   }),
 ];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { listCreate, listDestroy, listUpdate } from '../../action/list-actions';
+import * as listActions from '../../action/list-actions';
 
 import ListForm from '../list-form/list-form';
 import ListItem from '../list-item/list-item';
@@ -8,6 +8,11 @@ import ListItem from '../list-item/list-item';
 
 
 class DashboardContainer extends React.Component {
+
+  componentDidMount(){
+    this.props.actions.listsFetch()
+  }
+
   render() {
     return (
       <div className="dashboard-container">
@@ -17,6 +22,7 @@ class DashboardContainer extends React.Component {
         <ul>
           {this.props.lists.map(list => {
             return <li key={list.id}>
+              {console.log(list)}
               <ListItem id="list-item" list={list} destroy={this.props.actions.listDestroy} update={this.props.actions.listUpdate} />
             </li>
           })}
@@ -35,10 +41,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     actions: {
-      listCreate: list => dispatch(listCreate(list)),
-      listDestroy: list => dispatch(listDestroy(list)),
-      listUpdate: list => dispatch(listUpdate(list)),
-      // listsFetch: () => dispatch(listActions.listsFetchRequest()), 
+      listCreate: list => dispatch(listActions.listCreateRequest(list)),
+      listDestroy: list => dispatch(listActions.listDestroyRequest(list)),
+      listUpdate: list => dispatch(listActions.listUpdateRequest(list)),
+      listsFetch: () => dispatch(listActions.listsFetchRequest()), 
     }
   }
 }
