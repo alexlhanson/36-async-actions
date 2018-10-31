@@ -18,14 +18,14 @@ export default class App extends React.Component {
                 <h1>To-Do Lists</h1>
                 <nav>
                   <ul>
-                    <li><Link to="welcome/signup">Signup</Link></li>
-                    <li><Link to="welcome/login">Log In</Link></li>
+                    <li><Link to="/welcome/signup">Signup</Link></li>
+                    <li><Link to="/welcome/login">Log In</Link></li>
                     <li><Link to="/todo">To-Do</Link></li>
                   </ul>
                 </nav>
               </header>
               <main>
-                <Route exact path='/welcome:auth' component={LandingContainer} />
+                <Route exact path='/welcome/:auth' component={LandingContainer} />
                 <Route exact path='/todo' component={DashboardContainer} />
               </main>
             </div>
