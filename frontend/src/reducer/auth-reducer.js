@@ -1,16 +1,10 @@
-let initialState = '';
-
-export default (state = initialState, action) => {
+export default (state = '', action) => {
   let {type, payload} = action;
 
   switch (type) {
-    case 'TOKEN_SET':
-      return payload;
-      
-    case 'TOKEN_DESTROY':
-      return null;
+    case 'TOKEN_SET': return payload;
+    case 'TOKEN_DESTROY': return null;
 
-    default:
-      return state;
+    default: return state;
   }
 }

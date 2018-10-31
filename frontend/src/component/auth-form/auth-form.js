@@ -1,4 +1,6 @@
 import React from 'react';
+import * as utils from '../../lib/util';
+
 
 export default class AuthForm extends React.Component {
   constructor(props){

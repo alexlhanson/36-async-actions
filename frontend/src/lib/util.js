@@ -1,3 +1,3 @@
 export const renderIf = (test, component) => {
-  test ? component: undefined;
+  return test ? component : undefined;
 } 

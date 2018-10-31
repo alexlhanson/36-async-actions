@@ -3,7 +3,7 @@ import React from 'react';
 export default class ListForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.list ? props.list : '',  
+    this.state = props.list ? props.list : {title: ''},  
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

@@ -1,18 +1,18 @@
 import superagent from 'superagent';
 
 /********************************************************************************
-*         synchronous                                                           *
+*         Synchronous                                                           *
 ********************************************************************************/
 
 export const tokenSet = token => {
   return {
-    type: token,
+    type: 'TOKEN_SET',
     payload: token,
   }
 }
 
 export const tokenDestroy = () => {
-  return {type: token}
+  return {type: 'TOKEN-DESTROY'}
 }
 
 /********************************************************************************
@@ -24,21 +24,23 @@ export const signupRequest = user => dispatch => {
     .send(user)
     // .withCredentials()
     .then(res => {
-      dispatch(tokenSet(res.text));
-      localStorage.setItem('token', res.text);
-      return res
+      return handleToken(res, dispatch);
     })
     .catch(console.error)
 }
 
-export const signinRequest = user => dispatch => {
-  return superagent.get(`${__API_URL__}/signin`)
+export const loginRequest = user => dispatch => {
+  return superagent.get(`${__API_URL__}/login`)
     .auth(user.username, user.password)
     .withCredentials()
     .then(res => {
-      dispatch(tokenDestroy(res.text));
-      localStorage.setItem('token', res.text);
-      return res;
+      return handleToken(res, dispatch);
     })
     .catch(console.error)
+}
+
+const handleToken = (res, dispatch) => {
+  dispatch(tokenSet (res.text));
+  localStorage.setItem('token', res.text);
+  return res;
 }

@@ -13,18 +13,22 @@ class LandingContainer extends React.Component {
 
     return (
       <div>
-        <AuthForm onComplete={handleComplete} auth={params.auth} />
+        <AuthForm token={this.props.token} onComplete={handleComplete} auth={params.auth} />
       </div>
     );
   };
 };
 
-let mapStateToProps = state => { token = state.token }
+let mapStateToProps = state => { 
+  return {
+    token: state.token
+  } 
+}
 
 let mapDispatchToProps = dispatch => {
   return {
-    signup: dispatch(authActions.signupRequest(user)),
-    signin: dispatch(authActions.signinRequest(user))
+    signup: user=> dispatch(authActions.signupRequest(user)),
+    login: user => dispatch(authActions.loginRequest(user))
   }
 };
 
