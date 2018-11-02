@@ -13,14 +13,12 @@ export default (state = initialState, action) => {
 
     case 'LIST_DESTROY':
       return state.filter(list => {
-        return list.id !== payload.id;
+        return list._id !== payload._id;
       })
 
     case 'LIST_UPDATE':
       return state.map( list => {
-        if (list.id === payload.id){
-          return payload;
-        } else {return list}
+        return list._id === payload._id ? payload : list;
       })
 
     default: return state;

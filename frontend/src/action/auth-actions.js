@@ -12,7 +12,7 @@ export const tokenSet = token => {
 }
 
 export const tokenDestroy = () => {
-  return {type: 'TOKEN-DESTROY'}
+  return {type: 'TOKEN_DESTROY'}
 }
 
 /********************************************************************************
@@ -22,7 +22,7 @@ export const tokenDestroy = () => {
 export const signupRequest = user => dispatch => {
   return superagent.post(`${__API_URL__}/signup`)
     .send(user)
-    // .withCredentials()
+    .withCredentials()
     .then(res => {
       return handleToken(res, dispatch);
     })

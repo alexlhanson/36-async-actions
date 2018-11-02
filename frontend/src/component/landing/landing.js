@@ -27,7 +27,7 @@ let mapStateToProps = state => {
 
 let mapDispatchToProps = dispatch => {
   return {
-    signup: user=> dispatch(authActions.signupRequest(user)),
+    signup: user => dispatch(authActions.signupRequest(user)),
     login: user => dispatch(authActions.loginRequest(user))
   }
 };

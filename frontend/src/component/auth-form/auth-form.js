@@ -30,6 +30,7 @@ export default class AuthForm extends React.Component {
     e.preventDefault();
     this.props.onComplete(this.state)
       .then(() => {
+        console.log('after complete')
         this.setState({
           email: '',
           username: '',
