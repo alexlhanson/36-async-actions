@@ -5,19 +5,29 @@ import * as utils from '../../lib/util';
 import AuthForm from '../auth-form/auth-form';
 
 class LandingContainer extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect = path => {
+    this.props.history.replace(path)
+  };
 
   render() {
     let {params} = this.props.match;
 
-    let handleComplete = params.auth === 'signup' ? this.props.signup : this.props.signin;
+    let handleComplete = params.auth === 'signup' ? this.props.signup : this.props.login;
 
     return (
       <div>
-        <AuthForm token={this.props.token} onComplete={handleComplete} auth={params.auth} />
+        <AuthForm onComplete={handleComplete} auth={params.auth} redirect={this.redirect}/>
       </div>
     );
   };
 };
+
 
 let mapStateToProps = state => { 
   return {

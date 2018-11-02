@@ -20,10 +20,12 @@ export const tokenDestroy = () => {
 ********************************************************************************/
 
 export const signupRequest = user => dispatch => {
+  console.log('signing the hell up');
   return superagent.post(`${__API_URL__}/signup`)
     .send(user)
     .withCredentials()
     .then(res => {
+      console.log(res)
       return handleToken(res, dispatch);
     })
     .catch(console.error)
@@ -34,13 +36,18 @@ export const loginRequest = user => dispatch => {
     .auth(user.username, user.password)
     .withCredentials()
     .then(res => {
-      return handleToken(res, dispatch);
+      try{
+        dispatch(tokenSet(res.text));
+        localStorage.setItem('token', res.text);
+        console.log('res',res);
+        return res;
+      } catch(error){ console.error}
     })
     .catch(console.error)
 }
 
 const handleToken = (res, dispatch) => {
-  dispatch(tokenSet (res.text));
+  dispatch(tokenSet(res.text));
   localStorage.setItem('token', res.text);
   return res;
 }

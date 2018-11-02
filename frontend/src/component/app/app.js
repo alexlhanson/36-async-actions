@@ -5,6 +5,9 @@ import { Provider } from 'react-redux';
 import LandingContainer from '../landing/landing';
 import DashboardContainer from '../dashboard/dashboard';
 import createAppStore from '../../lib/store';
+import { Navbar, Nav, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
+
 const store = createAppStore();
 
 export default class App extends React.Component {
@@ -16,13 +19,20 @@ export default class App extends React.Component {
             <div>
               <header>
                 <h1>To-Do Lists</h1>
-                <nav>
-                  <ul>
-                    <li><Link to="/welcome/signup">Signup</Link></li>
-                    <li><Link to="/welcome/login">Log In</Link></li>
-                    <li><Link to="/todo">To-Do</Link></li>
-                  </ul>
-                </nav>
+                <Navbar>
+                  <Nav>
+                    <LinkContainer to="/welcome/signup">
+                      <NavItem>Signup</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/welcome/login">
+                      <NavItem>Login</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/todo">
+                      <NavItem>Todo</NavItem>
+                    </LinkContainer>
+                  </Nav>
+                </Navbar>;
+
               </header>
               <main>
                 <Route exact path='/welcome/:auth' component={LandingContainer} />

@@ -28,14 +28,12 @@ export default class AuthForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
+    console.log('props',this.props);
+    console.log('state', this.state);
     this.props.onComplete(this.state)
       .then(() => {
-        console.log('after complete')
-        this.setState({
-          email: '',
-          username: '',
-          password: '' 
-        })
+        console.log('getting here');
+        this.props.redirect('/todo');
       })
       .catch(console.error);
 
