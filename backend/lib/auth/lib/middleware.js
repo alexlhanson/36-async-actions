@@ -1,9 +1,9 @@
 'use strict';
 
-import User from '../model.js';
+const User = require('../model.js');
 
 
-export default (req, res, next) => {
+module.exports = (req, res, next) => {
   let authorize = (token) => {
     User.authorize(token)
       .then(user => {

@@ -1,7 +1,7 @@
 'use strict';
 
-import superagent from 'superagent';
-import User from '../model.js';
+const superagent = require('superagent');
+const User = require('../model.js');
 
 const authorize = (req) => {
   let code = req.query.code;
@@ -40,4 +40,4 @@ const authorize = (req) => {
     .catch(err => console.error(err));
 };
 
-export default authorize;
+module.exports = authorize;

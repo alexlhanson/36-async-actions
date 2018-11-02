@@ -1,13 +1,12 @@
 'use strict';
 
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcrypt');
 
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
-
 
 const userSchema = Schema({
   username: { type: String, required: true, unique: true },
@@ -79,4 +78,4 @@ userSchema.methods.comparePassword = function (password) {
     .then(valid => valid ? this : null);
 };
 
-export default mongoose.model('users', userSchema);
+module.exports = mongoose.model('users', userSchema);
