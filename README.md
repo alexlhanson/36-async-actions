@@ -15,9 +15,16 @@ List Maker
 ## Setup
 - Fork/clone git repository and run npm install in frontend directory
 - Fork/clone git repository and run npm install in backend directory
-- Use `npm run watch` to run webpack in order to setup local environment
-
-- For build version run `npm run build`
+- Setup frontend .env file with:
+  - `API_URL=http://localhost:choose your port`
+  - `PORT=choose your port`
+- Setup backend .env file with:
+  - `MONGODB_URI=mongodb://localhost/todoAppDemo`
+  - `PORT=choose your port`
+  - `SECRET=choose your secret` 
+- Use `npm run watch` from frontend folder to run webpack in order to setup local environment for front end.
+- Use `node index.js` to run backend from backend folder.
+- For build version run `npm run build`.
 
 ## Tools Used
 - React

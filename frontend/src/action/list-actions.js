@@ -80,7 +80,7 @@ export const listUpdateRequest = list => dispatch => {
 export const listsFetchRequest = () => dispatch => {
   let token = localStorage.getItem('token');
 
-  return superagent.get(`${__API_URL__}/api/lists`)
+  return superagent.get(`${__API_URL__}/api/lists`) 
     .set("Authorization", "Bearer " + token)
     .then(res => {
       dispatch(listSet(res.body));
