@@ -40,7 +40,10 @@ export const listDestroy = list => {
 ********************************************************************************/
 
 export const listCreateRequest = list => dispatch => {
+  let token = localStorage.getItem('token');
+
   return superagent.post(`${__API_URL__}/api/lists`)
+    .set("Authorization", "Bearer " + token)
     .send(list)
     .then(res => {
       dispatch(listCreate(res.body));
@@ -50,17 +53,22 @@ export const listCreateRequest = list => dispatch => {
 }
 
 export const listDestroyRequest = list => dispatch => {
+  let token = localStorage.getItem('token');
+
   return superagent.delete(`${__API_URL__}/api/lists/${list._id}`)
-  .then(res => {
-    dispatch(listDestroy(list))
-    return res;
-  })
-  .catch(console.error);
+    .set("Authorization", "Bearer " + token)
+    .then(res => {
+      dispatch(listDestroy(list))
+      return res;
+    })
+    .catch(console.error);
 }
 
 export const listUpdateRequest = list => dispatch => {
-  console.log(list);
+  let token = localStorage.getItem('token');
+
   return superagent.put(`${__API_URL__}/api/lists/${list._id}`)
+    .set("Authorization", "Bearer " + token)
     .send(list)
     .then(res => {
       dispatch(listUpdate(list))
@@ -70,10 +78,13 @@ export const listUpdateRequest = list => dispatch => {
 }
 
 export const listsFetchRequest = () => dispatch => {
+  let token = localStorage.getItem('token');
+
   return superagent.get(`${__API_URL__}/api/lists`)
+    .set("Authorization", "Bearer " + token)
     .then(res => {
       dispatch(listSet(res.body));
       return res;
     })
-    .catch (console.error);
+    .catch(console.error);
 }
