@@ -16,9 +16,14 @@ const app = express()
 
 //    * load middleware
 app.use(morgan('dev')) // logging util
-app.use(cors())        // enable crosite origin resoruce scripting
+app.use(cors({
+  origin: "http://localhost:8080",
+  credentials: true
+}))        // enable crosite origin resoruce scripting
+app.use(require('body-parser').json());
 
 //    * load routes
+app.use(require('./auth/auth-router.js'));
 app.use(require('../route/list-router.js'))
 app.use(require('../route/task-router.js'))
 

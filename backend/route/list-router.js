@@ -3,12 +3,13 @@
 // npm modules
 const jsonParser = require('body-parser').json()
 const listRouter = module.exports = new require('express').Router()
+const auth = require('../lib/auth/lib/middleware');
 
 // app modules
 const List = require('../model/list.js')
 
 // module logic
-listRouter.post('/api/lists', jsonParser, (req, res, next) => {
+listRouter.post('/api/lists', jsonParser, auth, (req, res, next) => {
   console.log('hit POST /api/lists')
   new List(req.body)
     .save()
@@ -16,7 +17,7 @@ listRouter.post('/api/lists', jsonParser, (req, res, next) => {
     .catch(next)
 })
 
-listRouter.get('/api/lists/:id', (req, res, next) => {
+listRouter.get('/api/lists/:id', auth, (req, res, next) => {
   console.log('hit GET /api/lists/:id')
 
   List.findById(req.params.id)
@@ -26,7 +27,7 @@ listRouter.get('/api/lists/:id', (req, res, next) => {
 })
 
 
-listRouter.get('/api/lists', (req, res, next) => {
+listRouter.get('/api/lists', auth, (req, res, next) => {
   console.log('hit /api/lists')
 
   let pageNumber = Number(req.query.page)
@@ -42,7 +43,7 @@ listRouter.get('/api/lists', (req, res, next) => {
 })
 
 
-listRouter.put('/api/lists/:id', jsonParser, (req, res, next) => {
+listRouter.put('/api/lists/:id', jsonParser, auth, (req, res, next) => {
   console.log('hit DELETE /api/lists/:id')
 
   List.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
@@ -52,7 +53,7 @@ listRouter.put('/api/lists/:id', jsonParser, (req, res, next) => {
 
 
 
-listRouter.delete('/api/lists/:id', (req, res, next) => {
+listRouter.delete('/api/lists/:id', auth, (req, res, next) => {
   console.log('hit DELETE /api/lists/:id')
 
   List.findByIdAndRemove(req.params.id) 

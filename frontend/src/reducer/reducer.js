@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import listReducer from '../reducer/list-reducer';
+import lists from '../reducer/list-reducer';
+import auth from '../reducer/auth-reducer';
 
 export default combineReducers({
-  lists: listReducer,
+  lists, auth
+
 })
